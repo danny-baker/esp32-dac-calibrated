@@ -13,8 +13,8 @@ For Micropython applications, here are the measured voltages for the 0-255 range
 ## Usage
 Wipe the tears of pain away and use these values in your code rather than assuming a linear relationship between 0-3.3V across the step range.
 
-# Run
-* Assume firmware installed on device and interfacing with it via `mpremote` on your PC 
+## Run
+* Assume firmware installed on device and interfacing with it via `mpremote` on Ubuntu PC 
 * Ref: https://docs.micropython.org/en/latest/reference/mpremote.html
 * Copy file to device `mpremote fs cp esp32_dac.py :esp32_dac.py`
 * Run example script from ESP32 memory `mpremote run example.py`
