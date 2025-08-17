@@ -26,6 +26,21 @@ while (step<=255):
     utime.sleep(5)
     step += random.randint(1,25)
 
+# Hit a target voltage with DAC
+target_voltage = 1.45
+
+# Invert the dictionary so we can search voltages for the step needed
+esp32_dac_inverted = {value: key for key, value in esp32_dac.items()} # type {voltage:step}
+
+# Find the closest voltage match in available DAC voltages
+closest_key = min(esp32_dac_inverted.keys(), key=lambda key: abs(key - target_voltage))
+
+# Equate this to the step
+step = esp32_dac_inverted[closest_key]
+
+# Set the DAC
+dac.write(step)
+print(f"Target voltage: {target_voltage}V DAC step: {step} DAC volt: {esp32_dac[step]}V ABS Error: {abs(target_voltage - esp32_dac[step])}")
 
 # *** WARNING ***
 # Don't forget to power cycle device if you need to rerun or do a machine.reset()
